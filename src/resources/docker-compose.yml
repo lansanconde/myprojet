@@ -1,0 +1,59 @@
+version: "3.5"
+
+
+services:
+
+  # server:
+  #   image: rsysserver:latest
+  #   container_name: rsys-server
+  #   command: npm start
+  #   #restart: always
+  #   ports:
+  #     - 29001:29001
+  #   networks:
+  #     - rsys-network
+  #   volumes:
+  #     - rsys-server-volume:/usr/src/app
+
+  db:
+    image: "mysql:5.7"
+    container_name: "cv-app-db"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 5556:3306
+    volumes:
+      - cv-app-volume:/var/lib/mysql/
+    networks:
+      - cv-app-network
+    env_file:
+      - mysql.env
+
+  phpmyadmin:
+    image: "phpmyadmin/phpmyadmin"
+    container_name: "cv-app-phpmyadmin"
+    depends_on:
+      - db
+    ports:
+      - 5000:80
+    networks:
+      - cv-app-network
+    # volumes:
+    #    - cv-app-volume:/etc/phpmyadmin
+    env_file:
+      - phpadmin.env
+    links:
+      - db
+
+
+volumes:
+  cv-app-volume:
+    name: "cv-app-volume"
+  cv-app-server-volume:
+    name: "cv-app-server-volume"
+
+networks:
+  cv-app-network:
+    name: "cv-app-network"
+    
+   

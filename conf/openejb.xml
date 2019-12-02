@@ -1,0 +1,10 @@
+<openejb>
+
+    <Resource id="MyDataSource" type="DataSource">
+         JdbcDriver com.mysql.jdbc.Driver
+        JdbcUrl jdbc:mysql://localhost:5556/cv_data
+        UserName admin
+        Password root
+        JtaManaged true
+    </Resource>
+</openejb>

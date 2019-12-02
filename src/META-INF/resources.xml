@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+
+<Resource id="MyDataSourceConfig" type="javax.sql.DataSource">
+    JdbcDriver com.mysql.jdbc.Driver
+        JdbcUrl jdbc:mysql://localhost/cv_data
+        UserName admin
+        Password root
+        JtaManaged true
+</Resource>
+
+</resources>
